@@ -32,11 +32,12 @@ def build_presentation(output_path: str):
     CODE_TXT = RGBColor(226, 232, 240)
     CODE_ACCENT = RGBColor(129, 140, 248)
 
-    # Screenshots uploaded by user
+    # Screenshots & Certificate uploaded by user
     image_dir = r"C:\Users\nikhi\.gemini\antigravity\brain\b188db44-ac69-453b-a6fe-af390114bb54\.user_uploaded"
     img_enterprise = os.path.join(image_dir, "media_1791997413016_b485b955.png")
     img_minimal = os.path.join(image_dir, "media_1791997438169_de4633c9.png")
     img_upload = os.path.join(image_dir, "media_1791997456963_ef187b24.png")
+    img_cert = os.path.join(os.path.dirname(os.path.abspath(__file__)), "certificate_beeskilled.png")
 
     def set_slide_bg(slide, color):
         bg = slide.background
@@ -173,8 +174,8 @@ def build_presentation(output_path: str):
     tf_s = stud_box.text_frame
     tf_s.word_wrap = True
     p = tf_s.paragraphs[0]
-    p.text = "G. Shiva Shankar Vara Prasad  /  Nikhil (Nikhil8-coder)"
-    p.font.size = Pt(15)
+    p.text = "G. Nikhil  (Nikhil G)"
+    p.font.size = Pt(16)
     p.font.bold = True
     p.font.color.rgb = NAVY_DEEP
     p = tf_s.add_paragraph()
@@ -182,7 +183,7 @@ def build_presentation(output_path: str):
     p.font.size = Pt(12)
     p.font.color.rgb = TEXT_MUTED
     p = tf_s.add_paragraph()
-    p.text = "Unlox Job Bridge Initiative • First Contact in Machine Learning\nGitHub Repository: https://github.com/Nikhil8-coder/employee-workforce-analytics"
+    p.text = "BeeSkilled Online Internship in Python  •  Tech & Internships Initiative\nGitHub Repository: https://github.com/Nikhil8-coder/employee-workforce-analytics"
     p.font.size = Pt(11)
     p.font.color.rgb = INDIGO_PRIMARY
     p.space_before = Pt(4)
@@ -921,36 +922,32 @@ st.download_button(label="📊 Download Excel", data=excel_buffer,
         p.font.color.rgb = TEXT_MAIN
         p.space_after = Pt(8)
 
-    # Right side 2 Cards (Certificate & Project)
-    add_card(s18, Inches(8.6), Inches(1.5), Inches(3.9), Inches(2.5), bg=CARD_ACCENT_BG)
-    tb_c1 = s18.shapes.add_textbox(Inches(8.8), Inches(1.7), Inches(3.5), Inches(2.1))
-    tf_c1 = tb_c1.text_frame
-    p = tf_c1.paragraphs[0]
-    p.text = "Certificate"
-    p.font.size = Pt(13)
-    p.font.bold = True
-    p.font.color.rgb = INDIGO_PRIMARY
-    p = tf_c1.add_paragraph()
-    p.text = "Unlox Edge Certification\n'First Contact in Machine Learning'"
-    p.font.size = Pt(12)
-    p.font.bold = True
-    p.font.color.rgb = NAVY_DEEP
-    p.space_before = Pt(6)
-
-    add_card(s18, Inches(8.6), Inches(4.3), Inches(3.9), Inches(2.5), bg=CARD_ACCENT_BG)
-    tb_c2 = s18.shapes.add_textbox(Inches(8.8), Inches(4.5), Inches(3.5), Inches(2.1))
-    tf_c2 = tb_c2.text_frame
-    p = tf_c2.paragraphs[0]
-    p.text = "Project"
-    p.font.size = Pt(13)
-    p.font.bold = True
-    p.font.color.rgb = INDIGO_PRIMARY
-    p = tf_c2.add_paragraph()
-    p.text = "Enterprise Workforce Intelligence & Analytics Platform"
-    p.font.size = Pt(12)
-    p.font.bold = True
-    p.font.color.rgb = NAVY_DEEP
-    p.space_before = Pt(6)
+    # Right side: Embed BeeSkilled Certificate Image
+    if os.path.exists(img_cert):
+        add_card(s18, Inches(8.3), Inches(1.5), Inches(4.3), Inches(5.3), border=INDIGO_PRIMARY)
+        s18.shapes.add_picture(img_cert, Inches(8.35), Inches(1.9), width=Inches(4.2))
+        tb_c = s18.shapes.add_textbox(Inches(8.35), Inches(1.55), Inches(4.2), Inches(0.35))
+        tf_c = tb_c.text_frame
+        p = tf_c.paragraphs[0]
+        p.text = "BeeSkilled Verified Internship Certificate"
+        p.font.size = Pt(11)
+        p.font.bold = True
+        p.font.color.rgb = INDIGO_PRIMARY
+        p.alignment = PP_ALIGN.CENTER
+    else:
+        add_card(s18, Inches(8.6), Inches(1.5), Inches(3.9), Inches(2.5), bg=CARD_ACCENT_BG)
+        tb_c1 = s18.shapes.add_textbox(Inches(8.8), Inches(1.7), Inches(3.5), Inches(2.1))
+        tf_c1 = tb_c1.text_frame
+        p = tf_c1.paragraphs[0]
+        p.text = "Certificate"
+        p.font.size = Pt(13)
+        p.font.bold = True
+        p.font.color.rgb = INDIGO_PRIMARY
+        p = tf_c1.add_paragraph()
+        p.text = "BeeSkilled Internship Certificate\nPython Online Internship Program\nIssued: 07 October 2026"
+        p.font.size = Pt(12)
+        p.font.bold = True
+        p.font.color.rgb = NAVY_DEEP
 
     # =========================================================================
     # SLIDE 19: Bibliography / References
@@ -971,8 +968,8 @@ st.download_button(label="📊 Download Excel", data=excel_buffer,
     p.space_after = Pt(14)
 
     refs = [
-        "Unlox Academy — Internship & Project-Based Learning Program materials.",
-        "Unlox Edge Certification — 'First Contact in Machine Learning'.",
+        "BeeSkilled — Python Online Internship Program (Tech and Internships) curriculum.",
+        "BeeSkilled Certificate of Completion — Awarded to Nikhil G, Issued 07 October 2026.",
         "Python Software Foundation — Python 3.14 Documentation & Standard Library.",
         "Pandas & NumPy Documentation — Tabular Data Aggregation, Indexing, and Array Operations.",
         "Scikit-Learn Developers — Ensemble Methods, Random Forest Regressor & Preprocessing Pipelines.",
@@ -1006,10 +1003,10 @@ st.download_button(label="📊 Download Excel", data=excel_buffer,
     p.space_after = Pt(14)
 
     p = tf20.add_paragraph()
-    p.text = "Machine Learning Internship • Unlox Academy"
+    p.text = "Python Internship • BeeSkilled (Tech & Internships)"
     p.font.size = Pt(16)
     p.font.bold = True
-    p.font.color.rgb = RGBColor(199, 210, 254) # Soft Indigo
+    p.font.color.rgb = RGBColor(199, 210, 254)
     p.space_after = Pt(8)
 
     p = tf20.add_paragraph()
@@ -1019,7 +1016,7 @@ st.download_button(label="📊 Download Excel", data=excel_buffer,
     p.space_after = Pt(16)
 
     p = tf20.add_paragraph()
-    p.text = "G. Shiva Shankar Vara Prasad  /  Nikhil (Nikhil8-coder)\nCSE (AI&ML) • Geethanjali College of Engineering and Technology\nA.Y. 2026–27"
+    p.text = "G. Nikhil (Nikhil G)\nCSE (AI&ML) • Geethanjali College of Engineering and Technology\nA.Y. 2026–27"
     p.font.size = Pt(13)
     p.font.color.rgb = RGBColor(199, 210, 254)
 
